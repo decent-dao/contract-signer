@@ -35,11 +35,9 @@ describe("ContractSigner", function () {
   it("The owner can call sign", async function () {
     const tx = await contractSigner.connect(owner).sign(hash);
 
-    const block = await ethers.provider.getBlock("latest");
-
     await expect(tx)
       .to.emit(contractSigner, "ContractSigned")
-      .withArgs(owner.address, hash, block.timestamp);
+      .withArgs(owner.address, hash);
   });
   it("A non-owner cannot call sign", async function () {
     await expect(contractSigner.connect(anon).sign(hash)).to.be.revertedWith(

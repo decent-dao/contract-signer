@@ -13,6 +13,6 @@ contract ContractSigner is IContractSigner, Ownable {
     }
 
     function sign(bytes32 _hash) external onlyOwner {
-        emit ContractSigned(owner(), _hash, block.timestamp);
+        emit ContractSigned(owner(), _hash);
     }
 }
